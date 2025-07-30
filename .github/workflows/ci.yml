@@ -144,7 +144,7 @@ jobs:
         path: resonance_report.json
         
   deploy-docs:
-    name: 📚 Deploy Documentation
+    name: 📚 Deploy Documentation  
     runs-on: ubuntu-latest
     needs: test-resonance
     if: github.ref == 'refs/heads/main'
@@ -271,7 +271,7 @@ jobs:
     - name: 🎵 Resonance Status
       run: |
         echo "🌊 ESTADO DE LA RESONANCIA VIVA:"
-        echo "   Tests: ${{ needs.test-resonance.result }}"
+        echo "   Tests: ${{ needs.test-resonance.result }}"  
         echo "   Docs: ${{ needs.deploy-docs.result }}"
         echo "   Análisis: ${{ needs.resonance-analysis.result }}"
         echo ""
