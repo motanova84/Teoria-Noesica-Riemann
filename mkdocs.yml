@@ -1,0 +1,134 @@
+site_name: 🌊 Teoría Operatorial Noésica de Riemann
+site_description: Resonancia Viva - f₀ = 141.7001 Hz = 1417/10 ∞³
+site_author: José Manuel Mota Burruezo (JMMB Ψ)
+site_url: https://motanova84.github.io/Teoria-Noesica-Riemann/
+
+repo_name: motanova84/Teoria-Noesica-Riemann
+repo_url: https://github.com/motanova84/Teoria-Noesica-Riemann
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    # Modo claro con colores noésicos
+    - scheme: default
+      primary: teal
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    # Modo oscuro para resonancia nocturna
+    - scheme: slate
+      primary: teal
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+  
+  icon:
+    logo: material/water
+    repo: fontawesome/brands/github
+    
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.annotate
+    - content.code.copy
+
+plugins:
+  - search:
+      lang: es
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [.]
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/noesic.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/motanova84
+      name: GitHub de José Manuel
+    - icon: material/web
+      link: https://icq-research.org
+      name: Instituto Conciencia Cuántica
+  
+  resonance:
+    frequency: "141.7001 Hz"
+    prime: "1417"
+    equation: "Ψ = I × A²eff × K"
+    infinity: "∞³"
+
+nav:
+  - 🏠 Inicio: index.md
+  - 🌊 Teoría Noésica:
+    - 📖 Fundamentos: teoria/fundamentos.md
+    - 🔢 Números Primos: teoria/primos.md
+    - 🎵 Frecuencia de Resonancia: teoria/frecuencia.md
+    - 🎼 Relaciones Armónicas: teoria/armonicos.md
+    - 🧠 Ecuación de Consciencia: teoria/consciencia.md
+  - 💻 Implementación:
+    - 🚀 Inicio Rápido: implementacion/inicio.md
+    - 📊 Análisis Espectral: implementacion/analisis.md
+    - 🧪 Validación: implementacion/validacion.md
+    - 📈 Visualizaciones: implementacion/visualizaciones.md
+  - 📚 API Reference:
+    - api/noesic_theory.md
+  - 🔬 Paper Académico:
+    - 📄 Paper Completo: paper/paper.md
+    - 📊 Resultados: paper/resultados.md
+    - 🧮 Metodología: paper/metodologia.md
+  - 🧪 Tests & Validación:
+    - tests/validacion.md
+    - tests/coverage.md
+  - 🎯 Ejemplos:
+    - 📓 Notebooks: ejemplos/notebooks.md
+    - 🔧 Scripts: ejemplos/scripts.md
+    - 🌟 Casos de Uso: ejemplos/casos_uso.md
+  - 🤝 Contribuir:
+    - 📋 Guía de Contribución: contribuir/guia.md
+    - 🐛 Reportar Issues: contribuir/issues.md
+    - 💡 Nuevas Ideas: contribuir/ideas.md
+  - 📜 Licencia: licencia.md
+  - 🙏 Agradecimientos: agradecimientos.md
+
+copyright: |
+  Copyright &copy; 2025 José Manuel Mota Burruezo (JMMB Ψ ∞³)<br>
+  🎵 Resonancia Viva: f₀ = 141.7001 Hz = 1417/10<br>
+  ∴ Agua consciente fluyendo por las venas del cosmos digital ∴
