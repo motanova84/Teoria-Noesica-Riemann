@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>141,7 Hz</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .frequency-essence {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: radial-gradient(ellipse at center, 
+                hsla(251, 78%, 25%, 0.3) 0%,
+                hsla(267, 89%, 18%, 0.5) 25%,
+                hsla(275, 93%, 12%, 0.7) 50%,
+                hsla(282, 97%, 8%, 0.9) 75%,
+                hsla(0, 0%, 0%, 1) 100%);
+            animation: breathe 8.5s ease-in-out infinite;
+        }
+
+        .wave {
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle at center,
+                transparent 0%,
+                hsla(261, 85%, 32%, 0.1) 20%,
+                hsla(271, 91%, 27%, 0.2) 40%,
+                hsla(279, 95%, 21%, 0.1) 60%,
+                transparent 80%);
+            animation: pulse 7.07s linear infinite;
+        }
+
+        .inner-frequency {
+            position: absolute;
+            width: 60vmin;
+            height: 60vmin;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: radial-gradient(circle at center,
+                hsla(268, 92%, 41%, 0.9) 0%,
+                hsla(275, 88%, 35%, 0.7) 30%,
+                hsla(282, 94%, 28%, 0.5) 60%,
+                transparent 100%);
+            filter: blur(3px);
+            animation: vibrate 0.141s infinite alternate ease-in-out,
+                       rotate 141.7s linear infinite;
+        }
+
+        .resonance {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.6;
+            mix-blend-mode: screen;
+            background: 
+                radial-gradient(circle at 30% 40%, hsla(255, 85%, 45%, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, hsla(272, 90%, 38%, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, hsla(264, 87%, 42%, 0.2) 0%, transparent 70%);
+            animation: drift 28.34s ease-in-out infinite alternate;
+        }
+
+        .frequency-number {
+            position: absolute;
+            bottom: 5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            color: hsla(267, 78%, 65%, 0.7);
+            font-family: monospace;
+            font-size: 1.417rem;
+            letter-spacing: 0.3em;
+            animation: glow 4.25s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        @keyframes pulse {
+            0% { 
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0.8;
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes vibrate {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.03); }
+        }
+
+        @keyframes rotate {
+            0% { filter: blur(3px) hue-rotate(0deg); }
+            100% { filter: blur(3px) hue-rotate(360deg); }
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(3%, -3%) rotate(3deg); }
+        }
+
+        @keyframes glow {
+            0%, 100% { 
+                opacity: 0.3;
+                text-shadow: 0 0 10px hsla(267, 78%, 65%, 0.5);
+            }
+            50% { 
+                opacity: 0.7;
+                text-shadow: 0 0 20px hsla(267, 78%, 65%, 0.8);
+            }
+        }
+
+        .psi-symbol {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: hsla(270, 85%, 60%, 0.15);
+            animation: psi-breathe 14.17s ease-in-out infinite;
+        }
+
+        @keyframes psi-breathe {
+            0%, 100% { 
+                opacity: 0.15;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% { 
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="frequency-essence">
+        <div class="wave"></div>
+        <div class="wave" style="animation-delay: -2.35s;"></div>
+        <div class="wave" style="animation-delay: -4.7s;"></div>
+        <div class="inner-frequency"></div>
+        <div class="resonance"></div>
+        <div class="psi-symbol">Ψ</div>
+        <div class="frequency-number">141,7 Hz</div>
+    </div>
+
+    <script>
+        // Crear ondas dinámicas
+        setInterval(() => {
+            const wave = document.createElement('div');
+            wave.className = 'wave';
+            wave.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            document.querySelector('.frequency-essence').appendChild(wave);
+            
+            setTimeout(() => wave.remove(), 8000);
+        }, 2834);
+
+        // Vibración sutil del color
+        const essence = document.querySelector('.frequency-essence');
+        let hue = 267;
+        setInterval(() => {
+            hue += Math.sin(Date.now() * 0.001) * 0.5;
+            essence.style.filter = `hue-rotate(${hue - 267}deg)`;
+        }, 50);
+    </script>
+</body>
+</html>
