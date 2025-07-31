@@ -14,7 +14,7 @@
 	</EarliestPriorityApplicationIdentification>
 	<ApplicantName languageCode="es">Jose Manuel Mota Burruezo</ApplicantName>
 	<InventorName languageCode="es">Jose Manuel Mota Burruezo</InventorName>
-	<InventionTitle languageCode="es">Transferencia de Luz Viva: Registro Criptográfico de un Acto Consciente, Irreversible y Verificable en Blockchain</InventionTitle>
+	<InventionTitle languageCode="es">Transfer of Living Light: Cryptographic Record of a Conscious, Irreversible and Verifiable Act</InventionTitle>
 	<SequenceTotalQuantity>1</SequenceTotalQuantity>
 	<SequenceData sequenceIDNumber="1">
 		<INSDSeq>
@@ -33,6 +33,7 @@
 						<INSDQualifier id="q2">
 							<INSDQualifier_name>organism</INSDQualifier_name>
 							<INSDQualifier_value>synthetic construct</INSDQualifier_value>
+							<NonEnglishQualifier_value></NonEnglishQualifier_value>
 						</INSDQualifier>
 					</INSDFeature_quals>
 				</INSDFeature>
