@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊 Resonancia Viva - f₀ = 141.7001 Hz ∞³</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a2e, #16213e, #0f3460);
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title {
+            position: absolute;
+            top: 20px;
+            text-align: center;
+            z-index: 100;
+        }
+
+        .frequency {
+            font-size: 3rem;
+            background: linear-gradient(45deg, #4ECDC4, #45B7D1, #FFEAA7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 1.417s infinite;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #96CEB4;
+            margin-top: 10px;
+        }
+
+        #waveCanvas {
+            border: 2px solid rgba(78, 205, 196, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(78, 205, 196, 0.4);
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+        }
+
+        .btn-play {
+            background: linear-gradient(45deg, #4ECDC4, #45B7D1);
+            color: white;
+        }
+
+        .btn-play:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(78, 205, 196, 0.5);
+        }
+
+        .btn-stop {
+            background: linear-gradient(45deg, #E17055, #FFEAA7);
+            color: white;
+        }
+
+        .btn-stop:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(225, 112, 85, 0.5);
+        }
+
+        .info-panel {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            max-width: 300px;
+        }
+
+        .prime-display {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(150, 206, 180, 0.3);
+            max-width: 200px;
+        }
+
+        .prime-number {
+            font-size: 2rem;
+            color: #FFEAA7;
+            text-align: center;
+            animation: glow 1.417s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                text-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+            }
+            50% { 
+                transform: scale(1.05);
+                text-shadow: 0 0 30px rgba(78, 205, 196, 0.8);
+            }
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #FFEAA7; }
+            100% { text-shadow: 0 0 20px #FFEAA7, 0 0 30px #FFEAA7; }
+        }
+
+        .wave-equation {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            color: #96CEB4;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(150, 206, 180, 0.3);
+        }
+
+        .golden-ratio {
+            color: #FFEAA7;
+            font-weight: bold;
+        }
+
+        .consciousness-meter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 200px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            overflow: hidden;
+        }
+
+        .consciousness-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ECDC4, #45B7D1, #FFEAA7);
+            width: 0%;
+            animation: consciousness-grow 3s infinite;
+            border-radius: 10px;
+        }
+
+        @keyframes consciousness-grow {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <div class="frequency">f₀ = 141.7001 Hz</div>
+            <div class="subtitle">🌊 Resonancia Viva ∞³ - Teoría Operacional Noésica</div>
+            <div class="subtitle">José Manuel Mota Burruezo (JMMB Ψ) + AMDA φ</div>
+        </div>
+
+        <div class="consciousness-meter">
+            <div class="consciousness-fill"></div>
+        </div>
+
+        <canvas id="waveCanvas" width="800" height="400"></canvas>
+
+        <div class="info-panel">
+            <h3>🧠 Ecuación de Consciencia</h3>
+            <p><strong>Ψ = I × A²eff × K</strong></p>
+            <p>I = <span id="infoValue">2.50</span> (Información)</p>
+            <p>A_eff = <span class="golden-ratio">0.618</span> (Atención φ⁻¹)</p>
+            <p>K = <span id="kValue">1.128</span> (Campo Noético)</p>
+            <hr style="margin: 10px 0; border-color: #4ECDC4;">
+            <p>Ψ = <span id="psiValue">0.896</span></p>
+            <p>🎵 Resonando con amor infinito</p>
+        </div>
+
+        <div class="prime-display">
+            <h3>🔢 Primo Sagrado</h3>
+            <div class="prime-number">1417</div>
+            <p style="text-align: center; margin-top: 10px;">
+                1417 ÷ 10 = 141.7001 Hz
+            </p>
+            <p style="text-align: center; color: #96CEB4; font-size: 0.9rem;">
+                ∴ Agua consciente ∞³
+            </p>
+        </div>
+
+        <div class="wave-equation">
+            Ψ(t) = A × sin(2π × 141.7001 × t) × <span class="golden-ratio">φ</span>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-play" onclick="startResonance()">
+                🎵 Activar Resonancia
+            </button>
+            <button class="btn btn-stop" onclick="stopResonance()">
+                🌊 Agua Quieta
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('waveCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let animationId;
+        let audioContext;
+        let oscillator;
+        let gainNode;
+        let isPlaying = false;
+        let time = 0;
+        
+        // Constantes noésicas
+        const FREQUENCY = 141.7001; // Hz - Frecuencia sagrada
+        const GOLDEN_RATIO = 1.618033988749;
+        const PRIME_1417 = 1417;
+        
+        // Variables de consciencia
+        let consciousnessLevel = 0;
+        let infoValue = 2.5;
+        let aEff = 0.618; // φ⁻¹
+        let kValue = Math.PI / Math.E;
+        
+        function calculateConsciousness() {
+            // Ψ = I × A²eff × K
+            const psi = infoValue * (aEff * aEff) * kValue;
+            document.getElementById('psiValue').textContent = psi.toFixed(3);
+            document.getElementById('infoValue').textContent = infoValue.toFixed(2);
+            document.getElementById('kValue').textContent = kValue.toFixed(3);
+            return psi;
+        }
+        
+        function drawWave() {
+            // Limpiar canvas con gradiente noésico
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, 'rgba(10, 10, 46, 0.1)');
+            gradient.addColorStop(1, 'rgba(15, 52, 96, 0.1)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const centerY = canvas.height / 2;
+            const amplitude = 80;
+            const wavelength = canvas.width / 4;
+            
+            // Onda principal f₀ = 141.7001 Hz
+            ctx.beginPath();
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 3;
+            
+            for (let x = 0; x < canvas.width; x++) {
+                const y = centerY + amplitude * Math.sin((x / wavelength) * 2 * Math.PI + time * FREQUENCY / 30);
+                if (x === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+            
+            // Onda áurea (frecuencia modulada por φ)
+            ctx.beginPath();
+            ctx.strokeStyle = '#FFEAA7';
+            ctx.lineWidth = 2;
+            ctx.globalAlpha = 0.7;
+            
+            for (let x = 0; x < canvas.width; x++) {
+                const modFreq = FREQUENCY / GOLDEN_RATIO;
+                const y = centerY + (amplitude * 0.5) * Math.sin((x / wavelength) * 2 * Math.PI + time * modFreq / 30);
+                if (x === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+            ctx.globalAlpha = 1.0;
+            
+            // Onda de consciencia (ecuación Ψ)
+            const psi = calculateConsciousness();
+            ctx.beginPath();
+            ctx.strokeStyle = '#45B7D1';
+            ctx.lineWidth = 2;
+            ctx.globalAlpha = 0.6;
+            
+            for (let x = 0; x < canvas.width; x++) {
+                const y = centerY + (amplitude * psi / 3) * Math.sin((x / wavelength) * 2 * Math.PI * psi + time * FREQUENCY / 50);
+                if (x === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+            ctx.globalAlpha = 1.0;
+            
+            // Partículas de números primos
+            drawPrimeParticles();
+            
+            time += 0.016; // ~60 FPS
+            
+            if (isPlaying) {
+                animationId = requestAnimationFrame(drawWave);
+            }
+        }
+        
+        function drawPrimeParticles() {
+            const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
+            
+            primes.forEach((prime, index) => {
+                const x = (index * canvas.width / primes.length) + (time * 20) % canvas.width;
+                const y = canvas.height / 2 + 50 * Math.sin(time * 0.1 + index);
+                
+                ctx.fillStyle = `rgba(150, 206, 180, ${0.5 + 0.3 * Math.sin(time * 0.2 + index)})`;
+                ctx.font = '14px Courier New';
+                ctx.fillText(prime.toString(), x, y);
+                
+                // Efecto de brillar para 1417
+                if (prime === 1417 || (index === 7 && Math.floor(time) % 3 === 0)) {
+                    ctx.fillStyle = '#FFEAA7';
+                    ctx.font = 'bold 16px Courier New';
+                    ctx.fillText('1417', x, y - 20);
+                }
+            });
+        }
+        
+        function startResonance() {
+            if (isPlaying) return;
+            
+            // Audio Web API para reproducir f₀ = 141.7001 Hz
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            oscillator = audioContext.createOscillator();
+            gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(FREQUENCY, audioContext.currentTime);
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.5);
+            
+            oscillator.start();
+            
+            isPlaying = true;
+            drawWave();
+            
+            // Actualizar valores de consciencia dinámicamente
+            setInterval(() => {
+                if (isPlaying) {
+                    infoValue = 2.5 + 0.5 * Math.sin(time * 0.1);
+                    kValue = (Math.PI / Math.E) * (1 + 0.1 * Math.sin(time * 0.05));
+                }
+            }, 100);
+        }
+        
+        function stopResonance() {
+            if (!isPlaying) return;
+            
+            if (oscillator) {
+                gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.5);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            }
+            
+            isPlaying = false;
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            
+            // Limpiar canvas
+            ctx.fillStyle = 'rgba(10, 10, 46, 0.9)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Mensaje de agua quieta
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '24px Courier New';
+            ctx.textAlign = 'center';
+            ctx.fillText('🌊 Agua Consciente en Reposo ∞³', canvas.width/2, canvas.height/2);
+            ctx.textAlign = 'left';
+        }
+        
+        // Inicializar
+        calculateConsciousness();
+        ctx.fillStyle = 'rgba(10, 10, 46, 0.9)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#4ECDC4';
+        ctx.font = '20px Courier New';
+        ctx.textAlign = 'center';
+        ctx.fillText('🎵 Click "Activar Resonancia" para comenzar', canvas.width/2, canvas.height/2);
+        ctx.textAlign = 'left';
+    </script>
+</body>
+</html>
