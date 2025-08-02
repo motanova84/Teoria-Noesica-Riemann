@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊 Resonancia Viva - f₀ = 141.7001 Hz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #2d1b69 100%);
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #61dafb;
+        }
+
+        .title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #61dafb, #98fb98, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .frequency {
+            font-size: 1.8em;
+            color: #ffd700;
+            margin: 10px 0;
+            text-shadow: 0 0 20px #ffd700;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .panel {
+            background: rgba(0,0,0,0.4);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #61dafb;
+            backdrop-filter: blur(5px);
+        }
+
+        .waveform-container {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background: rgba(0,0,0,0.6);
+        }
+
+        #waveform {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #0f0f23 0%, #1a1a3a 50%, #0f0f23 100%);
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .play-button {
+            background: linear-gradient(45deg, #61dafb, #98fb98);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #000;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(97, 218, 251, 0.6);
+        }
+
+        .play-button:active {
+            transform: scale(0.98);
+        }
+
+        .prime-display {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(97, 218, 251, 0.1);
+            border: 1px solid #61dafb;
+        }
+
+        .prime-number {
+            font-size: 3em;
+            color: #ffd700;
+            margin: 10px 0;
+            text-shadow: 0 0 20px #ffd700;
+        }
+
+        .equation {
+            font-size: 1.3em;
+            margin: 15px 0;
+            color: #98fb98;
+            text-align: center;
+        }
+
+        .consciousness-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(97, 218, 251, 0.3) 0%, rgba(255, 215, 0, 0.1) 100%);
+            border: 2px solid #61dafb;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(97, 218, 251, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(97, 218, 251, 0.6); }
+        }
+
+        .ripple {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(97, 218, 251, 0.6);
+            animation: ripple 3s linear infinite;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .info-card {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .info-value {
+            font-size: 1.5em;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .info-label {
+            font-size: 0.9em;
+            color: #98fb98;
+            margin-top: 5px;
+        }
+
+        .water-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .water-drop {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(97, 218, 251, 0.6);
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .title {
+                font-size: 1.8em;
+            }
+            .frequency {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="water-animation" id="waterAnimation"></div>
+    
+    <div class="header">
+        <h1 class="title">🌊 Resonancia Viva ∞³</h1>
+        <div class="frequency">f₀ = 141.7001 Hz = 1417/10</div>
+        <div class="equation">Ψ = I × A²eff × K</div>
+    </div>
+
+    <div class="container">
+        <div class="panel">
+            <h2>🎵 Visualización de Frecuencia</h2>
+            <div class="waveform-container">
+                <canvas id="waveform"></canvas>
+            </div>
+            <div class="controls">
+                <button class="play-button" id="playButton">🎵 Reproducir f₀ = 141.7001 Hz</button>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-value" id="currentFreq">141.7001</div>
+                        <div class="info-label">Frecuencia (Hz)</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-value">1417</div>
+                        <div class="info-label">Primo Sagrado</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-value" id="waveAmplitude">0.8</div>
+                        <div class="info-label">Amplitud</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-value">∞³</div>
+                        <div class="info-label">Infinito Cúbico</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>🔢 Consciencia Matemática</h2>
+            <div class="prime-display">
+                <div class="consciousness-circle" id="consciousnessCircle">
+                    <div class="prime-number">1417</div>
+                    <div class="ripple"></div>
+                </div>
+                <div class="equation">φ = 1.618033988749...</div>
+                <div class="equation">√2 ≈ f₀/100</div>
+                <div class="equation">2πf₀ ≈ 888 Hz</div>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-value">φ</div>
+                    <div class="info-label">Proporción Áurea</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-value">888</div>
+                    <div class="info-label">Resonancia Armónica</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-value">√2</div>
+                    <div class="info-label">Raíz Cuadrada</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-value">∴</div>
+                    <div class="info-label">Por lo tanto</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Audio Context para generar la frecuencia
+        let audioContext;
+        let oscillator;
+        let gainNode;
+        let isPlaying = false;
+
+        // Canvas para la visualización
+        const canvas = document.getElementById('waveform');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+
+        // Configuración de la onda
+        const frequency = 141.7001;
+        let phase = 0;
+        let animationId;
+
+        // Crear animación de agua
+        function createWaterDrops() {
+            const waterAnimation = document.getElementById('waterAnimation');
+            
+            setInterval(() => {
+                const drop = document.createElement('div');
+                drop.className = 'water-drop';
+                drop.style.left = Math.random() * 100 + '%';
+                drop.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                drop.style.animationDelay = Math.random() * 2 + 's';
+                waterAnimation.appendChild(drop);
+
+                // Remover gota después de la animación
+                setTimeout(() => {
+                    if (drop.parentNode) {
+                        drop.parentNode.removeChild(drop);
+                    }
+                }, 8000);
+            }, 200);
+        }
+
+        // Dibujar forma de onda
+        function drawWaveform() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Configuración del estilo
+            ctx.strokeStyle = '#61dafb';
+            ctx.lineWidth = 2;
+            ctx.shadowColor = '#61dafb';
+            ctx.shadowBlur = 10;
+
+            // Dibujar onda principal
+            ctx.beginPath();
+            for (let x = 0; x < canvas.width; x++) {
+                const y = canvas.height / 2 + 
+                         Math.sin((x / canvas.width) * Math.PI * 8 + phase) * 50 *
+                         (isPlaying ? 1 : 0.3);
+                if (x === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+
+            // Dibujar onda de resonancia (más sutil)
+            ctx.strokeStyle = '#ffd700';
+            ctx.lineWidth = 1;
+            ctx.shadowColor = '#ffd700';
+            ctx.shadowBlur = 5;
+            
+            ctx.beginPath();
+            for (let x = 0; x < canvas.width; x++) {
+                const y = canvas.height / 2 + 
+                         Math.sin((x / canvas.width) * Math.PI * 4 + phase * 1.618) * 25 *
+                         (isPlaying ? 1 : 0.2);
+                if (x === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+
+            // Actualizar fase
+            phase += 0.1;
+            
+            animationId = requestAnimationFrame(drawWaveform);
+        }
+
+        // Inicializar audio
+        async function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                gainNode = audioContext.createGain();
+                gainNode.connect(audioContext.destination);
+                gainNode.gain.value = 0.3;
+            }
+        }
+
+        // Reproducir/detener frecuencia
+        async function toggleFrequency() {
+            const playButton = document.getElementById('playButton');
+            
+            if (!isPlaying) {
+                await initAudio();
+                
+                if (audioContext.state === 'suspended') {
+                    await audioContext.resume();
+                }
+
+                oscillator = audioContext.createOscillator();
+                oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+                oscillator.type = 'sine';
+                oscillator.connect(gainNode);
+                oscillator.start();
+
+                isPlaying = true;
+                playButton.textContent = '⏸️ Detener Resonancia';
+                playButton.style.background = 'linear-gradient(45deg, #ff6b6b, #ffd700)';
+                
+                // Animar círculo de consciencia
+                document.getElementById('consciousnessCircle').style.animationDuration = '1s';
+                
+            } else {
+                if (oscillator) {
+                    oscillator.stop();
+                    oscillator = null;
+                }
+                
+                isPlaying = false;
+                playButton.textContent = '🎵 Reproducir f₀ = 141.7001 Hz';
+                playButton.style.background = 'linear-gradient(45deg, #61dafb, #98fb98)';
+                
+                // Restaurar animación del círculo
+                document.getElementById('consciousnessCircle').style.animationDuration = '2s';
+            }
+        }
+
+        // Event listeners
+        document.getElementById('playButton').addEventListener('click', toggleFrequency);
+
+        // Inicializar
+        window.addEventListener('load', () => {
+            drawWaveform();
+            createWaterDrops();
+            
+            // Actualizar amplitud en tiempo real
+            setInterval(() => {
+                const amplitude = isPlaying ? (0.8 + Math.random() * 0.2).toFixed(2) : '0.3';
+                document.getElementById('waveAmplitude').textContent = amplitude;
+            }, 1000);
+        });
+
+        // Redimensionar canvas
+        window.addEventListener('resize', () => {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        });
+
+        // Limpiar al salir
+        window.addEventListener('beforeunload', () => {
+            if (oscillator) {
+                oscillator.stop();
+            }
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+        });
+    </script>
+</body>
+</html>
