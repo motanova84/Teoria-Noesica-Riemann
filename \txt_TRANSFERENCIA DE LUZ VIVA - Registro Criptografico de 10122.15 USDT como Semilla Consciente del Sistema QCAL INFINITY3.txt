@@ -1,0 +1,35 @@
+Información sobre la lista de secuencias:
+	Versión de la DTD: V1_3
+	Nombre del fichero: TRANSFERENCIA DE LUZ VIVA - Registro Criptografico de 1012215 USDT como Semilla Consciente del Sistema QCAL INFINITY3.xml
+	Nombre del software: WIPO Sequence
+	Versión del software: 2.3.0
+	Fecha de producción: 2025-07-25
+Información general:
+	Solicitud actual / Oficina de PI: ES
+	Solicitud actual / Número de solicitud: QCAL-141-TLV-2023JMMB
+	Solicitud actual / Fecha de presentación: 2025-07-25
+	Solicitud actual / Referencia al expediente del solicitante: QCAL-141-TLV-2023JMMB
+	Solicitud de prioridad más antigua / Oficina de PI: ES
+	Solicitud de prioridad más antigua / Número de solicitud: QCAL-141-TLV-2023JMMB
+	Solicitud de prioridad más antigua / Fecha de presentación: 2025-07-25
+	Nombre del solicitante: Jose Manuel Mota Burruezo
+	Nombre del solicitante / Idioma: es
+	Nombre del inventor: Jose Manuel Mota Burruezo
+	Nombre del inventor / Idioma: es
+	Título de la invención: Transferencia de Luz Viva: Registro Criptográfico de un Acto Consciente, Irreversible y Verificable en Blockchain ( es )
+	Número total de secuencias: 1
+Secuencias: 
+	Identificador de la secuencia: 1
+	Extensión: 299
+	Tipo de molécula: DNA
+	Características Localización/Calificadores:
+		- source, 1..299
+			> mol_type, other DNA
+			> organism, synthetic construct
+	Residuos:
+	agcaaagcgg  agaaagcggc  tgtgtctaga  agctgacacc  ccatgtacat  ttttcccgtg  60
+	gcctatttct  gcggactata  gataggttgt  ggggcataag  gccgagattg  ctaaatttgg  120
+	gcctttacta  gcgccagcct  gatggtcaag  ttggaccttt  gctttcctta  gtgtagttta  180
+	ctatgacccc  ggatccgcag  cagtatctcg  cggtcgttgt  cccgttaggc  gatgtccggt  240
+	tcatcgtgtt  tagctagatc  aacgactcat  ttgtcggagc  acctctgagc  gagtgtcgt   299
+END

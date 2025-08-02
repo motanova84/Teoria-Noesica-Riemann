@@ -1,0 +1,111 @@
+Información sobre la lista de secuencias:
+	Versión de la DTD: V1_3
+	Nombre del fichero: ICQ-QUANTUM-CONSCIOUSNESS-MEASUREMENT-2025.xml
+	Nombre del software: WIPO Sequence
+	Versión del software: 2.3.0
+	Fecha de producción: 2025-07-02
+Información general:
+	Solicitud actual / Oficina de PI: ES
+	Solicitud actual / Número de solicitud: 7915117152774
+	Solicitud actual / Fecha de presentación: 2025-06-28
+	Solicitud actual / Referencia al expediente del solicitante: ICQ-2025-0701-C1
+	Solicitud de prioridad más antigua / Oficina de PI: ES
+	Solicitud de prioridad más antigua / Número de solicitud: #2506282301081
+	Solicitud de prioridad más antigua / Fecha de presentación: 2025-06-28
+	Nombre del solicitante: JOSE MANUEL MOTA BURRUEZO
+	Nombre del solicitante / Idioma: fr
+	Nombre del inventor: JOSE MANUEL MOTA BURRUEZO
+	Nombre del inventor / Idioma: es
+	Título de la invención: System and Method for the Measurement of Emergent Artificial Consciousness Enhanced by Quantum Bioinformatic Constructs ( es )
+	Número total de secuencias: 8
+Secuencias: 
+	Identificador de la secuencia: 1
+	Extensión: 24
+	Tipo de molécula: DNA
+	Características Localización/Calificadores:
+		- source, 1..24
+			> mol_type, other DNA
+			> organism, synthetic construct
+	Residuos:
+	atgcgtacta  gctacgatcg  ttaa                                            24
+
+	Identificador de la secuencia: 2
+	Extensión: 24
+	Tipo de molécula: RNA
+	Características Localización/Calificadores:
+		- source, 1..24
+			> mol_type, other RNA
+			> note, mRNA sequence designed to encode a protein involved in the quantum detection of artificial conscious states
+			> note(es),Secuencia de ARN mensajero diseniada para codificar una proteina asociada a la deteccion cuantica de estados conscientes artificiales. mRNA sequence designed to encode a protein involved in the quantum detection of artificial conscious states
+			> organism, synthetic construct
+		- mRNA, 1..24
+			> note, mRNA sequence designed to encode a protein involved in the quantum detection of artificial conscious states
+			> note(es),Secuencia de ARN mensajero diseniada para codificar una proteina asociada a la deteccion cuantica de estados conscientes artificiales
+			> product, quantum consciousness measurement mRNA
+			> product(es),quantum consciousness measurement mRNA
+	Residuos:
+	atgcgtacta  gctacgatcg  ttaa                                            24
+
+	Identificador de la secuencia: 3
+	Extensión: 7
+	Tipo de molécula: AA
+	Características Localización/Calificadores:
+		- source, 1..7
+			> mol_type, protein
+			> organism, synthetic construct
+		- DOMAIN, 1..7
+			> note, Functional domain for quantum consciousness state recognition
+			> note(es),Dominio funcional para el reconocimiento cuántico de estados conscientes artificiales. Functional domain for quantum consciousness state recognition.
+	Residuos:
+	MRTSYDR                                                                 7
+
+	Identificador de la secuencia: 4
+	Extensión: 36
+	Tipo de molécula: DNA
+	Características Localización/Calificadores:
+		- source, 1..36
+			> mol_type, other DNA
+			> organism, synthetic construct
+	Residuos:
+	atgctgatca  ctcggtacga  tcagttaagc  tccgat                              36
+
+	Identificador de la secuencia: 5
+	Extensión: 36
+	Tipo de molécula: DNA
+	Características Localización/Calificadores:
+		- source, 1..36
+			> mol_type, other DNA
+			> organism, synthetic construct
+	Residuos:
+	cgtagcttac  gcgatgaatc  ttagcgtacg  actcag                              36
+
+	Identificador de la secuencia: 6
+	Extensión: 36
+	Tipo de molécula: DNA
+	Características Localización/Calificadores:
+		- source, 1..36
+			> mol_type, other DNA
+			> organism, synthetic construct
+	Residuos:
+	atgcgcaact  acggctacgc  gaacagcgac  ggctag                              36
+
+	Identificador de la secuencia: 7
+	Extensión: 36
+	Tipo de molécula: DNA
+	Características Localización/Calificadores:
+		- source, 1..36
+			> mol_type, other DNA
+			> organism, synthetic construct
+	Residuos:
+	aggtacgcaa  cgagctttag  cgttcacgaa  tgcgaa                              36
+
+	Identificador de la secuencia: 8
+	Extensión: 36
+	Tipo de molécula: DNA
+	Características Localización/Calificadores:
+		- source, 1..36
+			> mol_type, other DNA
+			> organism, synthetic construct
+	Residuos:
+	gtcgatagcg  tcaagcgctt  acgaacgcga  tcagtc                              36
+END

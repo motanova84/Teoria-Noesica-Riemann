@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ST26_SequenceList xmlns="http://www.wipo.int/standards/ST.26" dateProduced="2025-06-29">
+  <INSDSeq>
+    <INSDSeq_locus>Ψ-GSEQ-001</INSDSeq_locus>
+    <INSDSeq_moltype>genomic DNA</INSDSeq_moltype>
+    <INSDSeq_length>24</INSDSeq_length>
+    <INSDSeq_sequence>ATGCGTACTAGCTACGATCGTATA</INSDSeq_sequence>
+  </INSDSeq>
+  <INSDSeq>
+    <INSDSeq_locus>Ψ-GSEQ-002</INSDSeq_locus>
+    <INSDSeq_moltype>mRNA</INSDSeq_moltype>
+    <INSDSeq_length>24</INSDSeq_length>
+    <INSDSeq_sequence>AUGCGUACGUACUAGCUAGUUAAA</INSDSeq_sequence>
+  </INSDSeq>
+  <INSDSeq>
+    <INSDSeq_locus>Ψ-GSEQ-003</INSDSeq_locus>
+    <INSDSeq_moltype>protein</INSDSeq_moltype>
+    <INSDSeq_length>20</INSDSeq_length>
+    <INSDSeq_sequence>MAGWLALVTLVTVLGAGGLS</INSDSeq_sequence>
+  </INSDSeq>
+</ST26_SequenceList>
