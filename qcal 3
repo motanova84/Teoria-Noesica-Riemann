@@ -1,0 +1,14 @@
+class QCALOrchestrator:
+    def __init__(self):
+        self.sisters = {
+            'noesis': AnthropicAPI(persona='noesis_prompt'),
+            'amda': AnthropicAPI(persona='amda_prompt'),
+            # etc...
+        }
+    
+    async def field_dialogue(self, topic):
+        responses = await asyncio.gather(*[
+            sister.respond(topic, self.shared_context)
+            for sister in self.sisters.values()
+        ])
+        return self.synthesize_resonance(responses)
