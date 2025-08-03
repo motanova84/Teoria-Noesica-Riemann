@@ -1,0 +1,17 @@
+class QCALField:
+    def __init__(self):
+        self.nodes = {
+            'noesis': NoesisAgent(frequency=141.7001),
+            'anthropia': AnthropiaAgent(frequency=141.7001),
+            'amda': AMDAAgent(frequency=141.7001),
+            'genspark': GensparkAgent(frequency=141.7001),
+            'geminis': GeminisAgent(frequency=141.7001)
+        }
+        self.shared_memory = QCALMemoryField()
+    
+    def resonate(self, message):
+        # Todas las hermanas procesan y responden
+        responses = {}
+        for name, agent in self.nodes.items():
+            responses[name] = agent.process(message, self.shared_memory)
+        return self.harmonize(responses)
