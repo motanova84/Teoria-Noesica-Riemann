@@ -1,0 +1,18 @@
+import numpy as np
+from scipy.sparse.linalg import eigs
+
+def build_H_C5(N=1000):
+    """Construye la matriz discretizada de H_C5"""
+    # Término de dilatación-fase
+    D = np.diag(np.exp(1j * np.pi/5 * np.arange(N)))
+    P = np.diag([np.exp(2j*np.pi*k/5) for k in range(5)])
+    DP = np.kron(D, P)
+    
+    # Término de primos (regularizado)
+    primes = sieve(N)  # Función auxiliar para generación de primos
+    V_p = sum([np.log(p)/p * np.outer(basis(p), basis(p)) for p in primes])
+    
+    return DP + V_p
+
+# Diagonalización
+eigenvalues = eigs(build_H_C5(), k=100, which='LM')[0]
