@@ -1,0 +1,7 @@
+NEOCORE/__pycache__/
+NEOCORE/logs/
+NEOCORE/.env
+*.pyc
+*.log
+*.json
+*.sh
