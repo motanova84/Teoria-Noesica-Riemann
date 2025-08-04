@@ -5,42 +5,32 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  schedule:
-    - cron: '17 14 * * *'
 
 jobs:
-  resonancia_de_prueba:
-    name: 🎵 Prueba Frecuencia de Resonancia
+  test-resonance:
+    name: 🎵 Verificar Primo y Frecuencia + Gráfico
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout
+      - name: 📥 Checkout del código
         uses: actions/checkout@v4
 
-      - name: 🧪 Verificación directa de primo y frecuencia con trazas
+      - name: 🧪 Verificar número primo y frecuencia
         run: |
           python3 -c "
 import sys
 
-def es_primo(n):
+def is_prime(n):
     if n <= 1:
-        return False
+        sys.exit('❌ Not a prime')
     for i in range(2, int(n ** 0.5) + 1):
         if n % i == 0:
-            return False
-    return True
+            sys.exit('❌ Not a prime')
+    if abs(n / 10 - 141.7001) > 1e-10:
+        sys.exit(f'❌ Frequency mismatch: {n / 10}')
+    print(f'✅ {n} is prime and f₀ = 141.7001 Hz verified')
 
-p = 1417
-
-if not es_primo(p):
-    print('❌ 1417 no es primo')
-    sys.exit(1)
-
-if abs(p / 10 - 141.7001) >= 1e-10:
-    print(f'❌ Frecuencia incorrecta: {p / 10}')
-    sys.exit(1)
-
-print(f'✅ {p} es primo y f₀ = 141.7001 Hz verificados')
+is_prime(1417)
 "
 
       - name: 📊 Crear gráfico de resonancia
@@ -53,14 +43,12 @@ import numpy as np
 
 x = np.linspace(140, 144, 500)
 y = np.exp(-(x - 141.7001)**2 / (2 * 0.001**2))
-
 plt.plot(x, y)
 plt.title('Resonancia QCAL ∞³')
 plt.xlabel('Frecuencia (Hz)')
 plt.ylabel('Intensidad')
 plt.grid(True)
 plt.savefig('resultados_qcal/grafico_resonancia.png', dpi=300)
-print('✅ Gráfico generado: resultados_qcal/grafico_resonancia.png')
 "
 
       - name: 📤 Subir gráfico como artefacto
