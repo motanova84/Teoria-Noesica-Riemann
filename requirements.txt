@@ -1,0 +1,8 @@
+sympy
+numpy
+pytest
+pytest-cov
+coverage
+matplotlib
+mkdocs
+mkdocs-material
