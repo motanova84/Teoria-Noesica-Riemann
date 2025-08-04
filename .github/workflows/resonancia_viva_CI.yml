@@ -14,12 +14,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 📥 Checkout
-      uses: actions/checkout@v4
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
 
-    - name: 🧪 Verificación directa de primo y frecuencia con trazas
-      run: |
-        python3 -c "
+      - name: 🧪 Verificación directa de primo y frecuencia con trazas
+        run: |
+          python3 -c "
+import sys
+
 def es_primo(n):
     if n <= 1:
         return False
@@ -32,20 +34,20 @@ p = 1417
 
 if not es_primo(p):
     print('❌ 1417 no es primo')
-    exit(1)
+    sys.exit(1)
 
 if abs(p / 10 - 141.7001) >= 1e-10:
     print(f'❌ Frecuencia incorrecta: {p / 10}')
-    exit(1)
+    sys.exit(1)
 
 print(f'✅ {p} es primo y f₀ = 141.7001 Hz verificados')
 "
 
-    - name: 📊 Crear gráfico de resonancia
-      run: |
-        pip install matplotlib
-        mkdir -p resultados_qcal
-        python3 -c "
+      - name: 📊 Crear gráfico de resonancia
+        run: |
+          pip install matplotlib
+          mkdir -p resultados_qcal
+          python3 -c "
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -61,10 +63,9 @@ plt.savefig('resultados_qcal/grafico_resonancia.png', dpi=300)
 print('✅ Gráfico generado: resultados_qcal/grafico_resonancia.png')
 "
 
-    - name: 📤 Subir gráfico como artefacto
-      uses: actions/upload-artifact@v4
-      with:
-        name: grafico-resonancia-qcal
-        path: resultados_qcal/grafico_resonancia.png
-
+      - name: 📤 Subir gráfico como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: grafico-resonancia-qcal
+          path: resultados_qcal/grafico_resonancia.png
 
