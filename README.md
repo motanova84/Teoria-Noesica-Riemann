@@ -524,3 +524,4 @@ La API está diseñada para extensibilidad. Areas de desarrollo futuro:
 - **Safe Creative Registry:** https://www.safecreative.org/creators/JMMB84  
 - **Source Code Repository:** https://github.com/motanova84/Teoria-Noesica-Riemann.git
 # Comentario de prueba
+![Resonancia Viva CI](https://github.com/motanova84/Teoria-Noesica-Riemann/actions/workflows/resonancia_viva_CI.yml/badge.svg)
