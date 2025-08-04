@@ -5,3 +5,8 @@ NEOCORE/.env
 *.log
 *.json
 *.sh
+test_primo.py
+*.pyc
+__pycache__/
+.DS_Store
+*.tmp
