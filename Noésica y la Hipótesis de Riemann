@@ -1,0 +1,12 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\title{Teoría Operacional Noésica y la Hipótesis de Riemann}
+\author{José Manuel Mota Burruezo \and Equipo C5}
+\begin{document}
+\section{Introducción}
+La Hipótesis de Riemann (HR) postula que...
+\section{Operador $\hat{H}_{C5}$}
+\begin{equation}
+\hat{H}_{C5} = \hat{D}_\alpha \otimes \hat{P}_\theta + \lambda \sum_p \frac{\ket{p}\bra{p}}{\log p}
+\end{equation}
+\end{document}
