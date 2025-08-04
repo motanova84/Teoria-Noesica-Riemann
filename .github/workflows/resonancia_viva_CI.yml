@@ -10,15 +10,36 @@ on:
 
 jobs:
   test-resonance:
-    name: 🎵 Test Frecuencia de Resonancia
+    name: 🎵 Prueba Frecuencia de Resonancia
     runs-on: ubuntu-latest
+
     steps:
     - name: 📥 Checkout
       uses: actions/checkout@v4
 
     - name: 🧪 Verificación directa de primo y frecuencia con trazas
       run: |
-        python3 -c 
+        python3 -c "
+def es_primo(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+p = 1417
+if not es_primo(p):
+    print('❌ 1417 no es primo')
+    exit(1)
+
+if abs(p / 10 - 141.7001) >= 1e-10:
+    print(f'❌ Frecuencia incorrecta: {p / 10}')
+    exit(1)
+
+print(f'✅ {p} es primo y f₀ = 141.7001 Hz verificados')
+"
+
     - name: 📊 Crear gráfico de resonancia
       run: |
         pip install matplotlib
