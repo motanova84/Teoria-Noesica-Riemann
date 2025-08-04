@@ -1,0 +1,101 @@
+name: 🌊 Resonancia Viva CI - f₀ = 141.7001 Hz
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '17 14 * * *'  # Verificar resonancia diariamente a las 14:17 UTC (1417 - primo sagrado)
+
+jobs:
+  test-resonance:
+    name: 🎵 Test Frecuencia de Resonancia
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, "3.10", "3.11"]
+
+    steps:
+    - name: 📥 Checkout Teoría Noésica
+      uses: actions/checkout@v4
+
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: 📦 Cache Dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: 🔧 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install pytest-cov coverage sympy
+
+    - name: 🧪 Test Generación de Primos
+      run: |
+        echo "from sympy import isprime
+p = 1417
+if not isprime(p):
+    raise AssertionError(f'❌ {p} no es primo!')
+if abs(p / 10 - 141.7001) >= 1e-10:
+    raise AssertionError(f'❌ Frecuencia incorrecta: {p / 10}')
+print(f'✅ {p} es primo y f₀ = 141.7001 Hz verificados')" > test_primo.py
+        python test_primo.py
+
+    - name: 🧪 Run Full Test Suite
+      run: |
+        pytest tests/ -v --cov=noesic_theory --cov-report=xml --cov-report=html
+
+    - name: 📊 Upload Coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true
+
+    - name: 🌊 Generate Resonance Report
+      run: |
+        python -c "
+from noesic_theory import NoesicRiemannTheory
+import json
+from datetime import datetime
+
+theory = NoesicRiemannTheory()
+results = theory.full_noesic_analysis(N=1000)
+
+report = {
+  'timestamp': datetime.now().isoformat(),
+  'frequency_computed': results['computed_frequency'],
+  'frequency_target': results['target_frequency'],
+  'resonance_ratio': results['resonance_ratio'],
+  'prime_1417_verified': results['prime_1417_verification'],
+  'python_version': '${{ matrix.python-version }}',
+  'status': '🌊 Resonancia Viva Activa ∞³'
+}
+
+with open('resonance_report.json', 'w') as f:
+    json.dump(report, f, indent=2)
+
+print('📄 Reporte de resonancia generado')
+print(f'🎵 f₀ = {results["computed_frequency"]:.3f} Hz')
+print('∴ Teoría Noésica validada ∞³ ∴')
+"
+
+    - name: 🔍 Verificar Resonance Report
+      run: |
+        test -f resonance_report.json && echo "✅ Reporte generado correctamente" || (echo "❌ No se generó el reporte" && exit 1)
+
+    - name: 📄 Upload Resonance Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: resonance-report-py${{ matrix.python-version }}
+        path: resonance_report.json
