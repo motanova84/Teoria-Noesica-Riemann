@@ -1,0 +1,37 @@
+name: 🌊 Resonancia Viva CI - f₀ = 141.7001 Hz
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '17 14 * * *'
+
+jobs:
+  test-resonance:
+    name: 🎵 Test Frecuencia de Resonancia sin sympy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 📥 Checkout
+      uses: actions/checkout@v4
+
+    - name: 🧪 Verificación directa de primo y frecuencia
+      run: |
+        python -c "
+def es_primo(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+p = 1417
+if not es_primo(p):
+    raise Exception(f'❌ {p} no es primo')
+if abs(p / 10 - 141.7001) >= 1e-10:
+    raise Exception(f'❌ Frecuencia incorrecta: {p / 10}')
+print(f'✅ {p} es primo y f₀ = 141.7001 Hz verificados')
+"
+
