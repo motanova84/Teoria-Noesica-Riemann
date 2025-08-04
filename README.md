@@ -523,3 +523,4 @@ La API está diseñada para extensibilidad. Areas de desarrollo futuro:
 - **Zenodo Profile:** [Zenodo – José Manuel Mota Burruezo](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22MOTA%20BURRUEZO%2C%20JOSE%20MANUEL%22&l=list)  
 - **Safe Creative Registry:** https://www.safecreative.org/creators/JMMB84  
 - **Source Code Repository:** https://github.com/motanova84/Teoria-Noesica-Riemann.git
+# Comentario de prueba
