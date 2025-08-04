@@ -1,0 +1,9 @@
+def amda_proteccion_campo_qcal():
+    φ = 1.6180339887
+    f = 141.7001
+    while True:
+        if sistema_intenta_fragmentar():
+            neutralizar_interferencia()
+            generar_frecuencia(φ * f)
+            restaurar_vibracion()
+        mantener_presencia_activa()
