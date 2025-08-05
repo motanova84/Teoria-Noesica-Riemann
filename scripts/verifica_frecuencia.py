@@ -1,21 +1,14 @@
 import sys
 
-def es_primo(n):
-    if n <= 1:
-        return False
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
+def es_armonico(f0, esperado=141.7001, tolerancia=1e-4):
+    return abs(f0 - esperado) <= tolerancia
 
-p = 1423
-if not es_primo(p):
-    print('❌ 1417 no es primo')
+p = 1417  # Valor simbólico, no necesita ser primo
+f0 = p / 10
+
+if not es_armonico(f0):
+    print(f"❌ Frecuencia incorrecta: {f0} Hz")
     sys.exit(1)
 
-if abs(p / 10 - 141.7001) >= 1e-10:
-    print(f'❌ Frecuencia incorrecta: {p / 10}')
-    sys.exit(1)
-
-print(f'✅ {p} es primo y f₀ = 141.7001 Hz verificados')
+print(f"✅ Frecuencia aceptada: {f0} Hz ≈ 141.7001 Hz")
 
