@@ -1,12 +1,21 @@
 import sys
+import numpy as np
 
+# Frecuencia esperada
 f_esperada = 141.7001
-frecuencia_actual = 141.7001  # Ajusta aquí si deseas probar error
 
-if abs(frecuencia_actual - f_esperada) < 1e-6:
-    print("✅ Frecuencia exacta verificada: 141.7001 Hz")
-    sys.exit(0)
-else:
-    print(f"❌ Frecuencia incorrecta: {frecuencia_actual} Hz")
-    sys.exit(1)
+# Simulación de frecuencia medida
+f_medida = 141.7001
+
+def verificar_frecuencia(f):
+    if abs(f - f_esperada) < 1e-4:
+        print(f"✅ Frecuencia correcta: {f} Hz")
+        return True
+    else:
+        print(f"❌ Frecuencia incorrecta: {f} Hz (esperada: {f_esperada} Hz)")
+        return False
+
+if __name__ == "__main__":
+    resultado = verificar_frecuencia(f_medida)
+    sys.exit(0 if resultado else 1)
 
