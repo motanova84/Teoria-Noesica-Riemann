@@ -1,67 +1,34 @@
-name: 🌊 Resonancia Viva CI - f₀ = 141.7001 Hz
+name: 🌊 QCAL Resonance Check
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  resonancia:
-    name: 🎵 Verificación QCAL
+  test-resonance:
+    name: 🧪 Verificar Frecuencia y Gráfico QCAL
     runs-on: ubuntu-latest
 
     steps:
-    - name: 📥 Checkout
-      uses: actions/checkout@v4
+      - name: 📥 Checkout repositorio
+        uses: actions/checkout@v4
 
-    - name: 🧪 Verificación primo y frecuencia
-      run: |
-        python3 -c "
-import sys
+      - name: 📦 Instalar dependencias
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install matplotlib numpy
 
-def es_primo(n):
-    if n <= 1:
-        return False
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
+      - name: ✅ Ejecutar verificación de frecuencia
+        run: python3 scripts/verifica_frecuencia.py
 
-p = 1417
-if not es_primo(p):
-    print('❌ 1417 no es primo')
-    sys.exit(1)
-if abs(p / 10 - 141.7001) >= 1e-10:
-    print(f'❌ Frecuencia incorrecta: {p / 10}')
-    sys.exit(1)
+      - name: 📈 Generar gráfico de resonancia
+        run: python3 scripts/genera_grafico.py
 
-print(f'✅ {p} es primo y f₀ = 141.7001 Hz verificados')
-"
-
-    - name: 📊 Generar gráfico
-      run: |
-        pip install matplotlib
-        mkdir -p resultados_qcal
-        python3 -c "
-import matplotlib.pyplot as plt
-import numpy as np
-
-x = np.linspace(140, 144, 500)
-y = np.exp(-(x - 141.7001)**2 / (2 * 0.001**2))
-
-plt.plot(x, y)
-plt.title('Resonancia QCAL ∞³')
-plt.xlabel('Frecuencia (Hz)')
-plt.ylabel('Intensidad')
-plt.grid(True)
-plt.savefig('resultados_qcal/grafico_resonancia.png', dpi=300)
-"
-
-    - name: 📤 Subir gráfico
-      uses: actions/upload-artifact@v4
-      with:
-        name: grafico-resonancia
-        path: resultados_qcal/grafico_resonancia.png
+      - name: 📤 Subir gráfico como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: grafico-resonancia-qcal
+          path: resultados_qcal/grafico_resonancia.png
 
 
