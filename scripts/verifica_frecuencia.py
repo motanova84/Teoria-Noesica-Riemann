@@ -8,7 +8,7 @@ def es_primo(n):
             return False
     return True
 
-p = 1417
+p = 1423
 if not es_primo(p):
     print('❌ 1417 no es primo')
     sys.exit(1)
