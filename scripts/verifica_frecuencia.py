@@ -1,10 +1,7 @@
 import sys
 import numpy as np
 
-# Frecuencia esperada
 f_esperada = 141.7001
-
-# Simulación de frecuencia medida
 f_medida = 141.7001
 
 def verificar_frecuencia(f):
