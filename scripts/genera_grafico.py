@@ -1,24 +1,21 @@
-import matplotlib.pyplot as plt
+kimport matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 import os
 
-# Crear carpeta si no existe
+f0 = 141.7001
+t = np.linspace(0, 1, 1000)
+y = np.sin(2 * np.pi * f0 * t)
+
 os.makedirs("resultados_qcal", exist_ok=True)
 
-# Fecha actual UTC para nombrar el archivo
-fecha = datetime.utcnow().strftime("%Y%m%d")
-output_path = f"resultados_qcal/grafico_resonancia_{fecha}.png"
+fecha = datetime.now().strftime("%Y-%m-%d")
+filename = f"grafico_resonancia_{fecha}.png"
+ruta = os.path.join("resultados_qcal", filename)
 
-# Datos y gráfico
-x = np.linspace(140, 144, 500)
-y = np.exp(-(x - 141.7001)**2 / (2 * 0.001**2))
-
-plt.plot(x, y)
-plt.title("Resonancia QCAL ∞³")
-plt.xlabel("Frecuencia (Hz)")
-plt.ylabel("Intensidad")
-plt.grid(True)
-plt.savefig(output_path, dpi=300)
-print(f"✅ Gráfico generado: {output_path}")
+plt.plot(t, y)
+plt.title(f"Resonancia Viva QCAL ∞³ — f₀ = {f0} Hz")
+plt.xlabel("Tiempo (s)")
+plt.ylabel("Amplitud")
+plt.savefig(ruta)
 
