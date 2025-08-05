@@ -1,34 +1,37 @@
-name: 🌊 Resonancia Viva CI - f₀ = 141.7001 Hz
+name: 🌊 QCAL Resonance Check
 
 on:
-  schedule:
-    - cron: '17 14 * * *'  # Todos los días a las 14:17 UTC
   workflow_dispatch:
+  schedule:
+    - cron: '17 14 * * *'  # Ejecutar todos los días a las 14:17 UTC (coherente con 1417)
 
 jobs:
-  test-resonancia:
+  verificar_resonancia:
     runs-on: ubuntu-latest
+
     steps:
-      - name: 📥 Clonar repositorio
-        uses: actions/checkout@v4
+    - name: 📥 Checkout repositorio
+      uses: actions/checkout@v4
 
-      - name: 🐍 Configurar Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
+    - name: 🐍 Instalar Python 3
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
 
-      - name: 📦 Instalar matplotlib
-        run: pip install matplotlib
+    - name: 🧪 Instalar dependencias
+      run: |
+        python3 -m pip install --upgrade pip
+        pip install numpy matplotlib
 
-      - name: 🧪 Verificar frecuencia
-        run: python3 scripts/verifica_frecuencia.py
+    - name: 🔍 Ejecutar verificación de frecuencia
+      run: python3 scripts/verifica_frecuencia.py
 
-      - name: 📈 Generar gráfico de resonancia
-        run: python3 scripts/genera_grafico.py
+    - name: 📈 Generar gráfico diario
+      run: python3 scripts/genera_grafico.py
 
-      - name: 📤 Subir artefacto
-        uses: actions/upload-artifact@v4
-        with:
-          name: grafico-resonancia-qcal
-          path: resultados_qcal/
+    - name: 📤 Subir gráfico como artefacto
+      uses: actions/upload-artifact@v4
+      with:
+        name: grafico_resonancia
+        path: resultados_qcal/*.png
 
