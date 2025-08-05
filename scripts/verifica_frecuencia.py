@@ -1,4 +1,4 @@
-kimport sys
+import sys
 
 f_esperada = 141.7001
 frecuencia_actual = 141.7001  # Ajusta aquí si deseas probar error
